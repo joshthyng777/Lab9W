@@ -1,4 +1,4 @@
-package Lab9;
+//RadixSortRc by Josh Thyng
 
 public class RadixSortRC {
     // The array keeping the digit counts
@@ -23,32 +23,29 @@ public class RadixSortRC {
      * @param input array of int to be sorted (only integers with 3 digits ranging from 100 to 999
      * @return sorted array
      */
-    public int[] sort(int[]input)
-    {
-        // this array will be used in your code as the copy array
+    public int[] sort(int[] input) {
         int[] copyArray = new int[input.length];
         
-        
-        for (int pass = 1; pass<=3; pass++)
-        {
-            // this value is used to get the corresponding digit in each pass
-            int divisor = POWERS_OF_TEN[pass-1];
+        for (int pass = 1; pass <= 3; pass++) {
+            int divisor = POWERS_OF_TEN[pass - 1];
             
-            // this method will update the digit counts array accordingly
             updateDigitCounts(input, divisor);
-            
-            // updates the running counts
             updateRunningCounts();
-            
-            //Your code goes here
-            //Copy the items in the second array accordingly
-            
+    
+            for (int i = input.length - 1; i >= 0; i--) {
+                int digit = (input[i] / divisor) % RADIX_BASE;
+                copyArray[runningCounts[digit] - 1] = input[i];
+                runningCounts[digit]--;
+
+            }
+    
+            System.arraycopy(copyArray, 0, input, 0, input.length);
             
         }
         
-        // you may modify this line if needed
         return input;
     }
+    
 
     private void updateRunningCounts() {
         // updats the running counts
