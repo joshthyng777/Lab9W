@@ -5,6 +5,8 @@ public class RunningExample {
 
 		RadixSortQueue rsq = new RadixSortQueue();
 		System.out.print(rsq);
+		
+		
 	}
 
 }
