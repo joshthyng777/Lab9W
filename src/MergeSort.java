@@ -1,4 +1,3 @@
-package Lab9;
 
 public class MergeSort {
     
